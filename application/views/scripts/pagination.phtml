@@ -1,0 +1,17 @@
+<nav>
+   <ul class="pagination">
+    <?php if (isset($this->previous)): ?>
+    <li class="page-item"><a class="page-link" href="<?php echo $this->url(array('pagina' => $this->first)); ?>">&laquo;</a></li>
+    <?php else: ?>
+    <li class="page-item"><a class="page-link" href="<?php echo $this->url(array('pagina' => $this->first)); ?>">&laquo;</a></li>
+    <?php endif; ?>
+    <?php foreach ($this->pagesInRange as $page): ?>
+    <li <?php if($page == $this->pag){ echo "class='page-item active'";} else { echo "class='page-item'";}?>><a class="page-link" href="<?php echo $this->url(array('pagina' => $page)); ?>"><?php echo $page; ?></a></li>
+    <?php endforeach; ?>
+    <?php if (isset($this->next)): ?>
+    <li class="page-item"><a class="page-link" href="<?php echo $this->url(array('pagina' => $this->last)); ?>">&raquo;</a></li>
+    <?php else: ?>
+    <li class="page-item"><a class="page-link" href="<?php echo $this->url(array('pagina' => $this->last)); ?>">&raquo;</a></li>
+    <?php endif; ?>
+  </ul>
+</nav>

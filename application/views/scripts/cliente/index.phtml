@@ -1,0 +1,89 @@
+<h2>Clientes</h2>
+<hr>
+
+<div class="btn-toolbar mb-3" role="toolbar">
+	<div class="btn-group mr-2" role="group">
+		<div class="input-group-prepend">
+			<div class="input-group-text"><span data-feather="search"></span></div>
+		</div>
+
+		<button type="button" class="btn btn-secondary" data-toggle="collapse" data-target="#pesquisa" aria-expanded="false" aria-controls="pesquisa">Pesquisar</button>
+	</div>
+
+	<a href="/<?= $this->controllerName?>/novo" class="btn btn-success"> Adicionar</a>
+</div>
+
+<?php if($this->limpraFiltro): ?><a href="/<?= $this->controllerName?>" class="btn btn-outline-dark">Limpar filtros</a><?php endif;?>
+
+<div class="collapse" id="pesquisa">
+	<div class="card card-body">
+		<form name="formPesquisa" id="formPesquisa" method="post" action="">
+			<div class="form-row">
+				<div class="form-group col-md-4">
+	            	<?= $this->form->cliente_nome ?>
+      	</div>
+				<div class="form-group col-md-4">
+	            	<?= $this->form->cliente_login ?>
+	    	</div>
+				<div class="form-group col-md-4">
+	            	<?= $this->form->cliente_email ?>
+	    	</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-4">
+	            	<?= $this->form->cadastroi ?>
+	        	</div>
+				<div class="form-group col-md-4">
+	            	<?= $this->form->cadastrof ?>
+	        	</div>
+				<div class="form-group col-md-4">
+	            	<?= $this->form->cliente_ativo ?>
+      	</div>
+			</div>
+			<button type="submit" class="btn btn-sm btn-warning">Pesquisar</button>
+			<button type="button" class="btn btn-sm btn-danger" data-toggle="collapse" data-target="#pesquisa" aria-expanded="false" aria-controls="pesquisa">Cancelar</button>
+		</form>
+	</div>
+</div>
+
+<table class="table table-hover mt-3">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">NOME</th>
+      <th scope="col">E-MAIL</th>
+      <th scope="col">LOGIN</th>
+      <th scope="col">CADASTRO</th>
+      <th scope="col" class="text-right">
+      	<a href="/<?= $this->controllerName?>"><span data-feather="refresh-cw"></span> atualizar dados </th>
+    </tr>
+  </thead>
+  <tbody>
+  	<?php
+	  	$count = 1;
+  		foreach($this->rows as $row) :
+  		$row = $this->FormataInputsView($this->cols, $row->toArray());?>
+
+    <tr id="<?=$row['cliente_id']?>">
+      <th scope="row"><?=$count++?></th>
+      <td><?=$row['cliente_nome']?></td>
+      <td><?=$row['cliente_email']?></td>
+      <td><?=$row['cliente_login']?></td>
+			<td><?=$row['cliente_cadastro']?></td>
+      <td class="text-right">
+      	<div class="btn-group">
+			  <button type="button" class="btn btn-sm btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			    ALTERAR
+			  </button>
+			  <div class="dropdown-menu">
+			    <a class="dropdown-item" href="/<?= $this->controllerName?>/<?=$row['cliente_id']?>">Editar</a>
+			    <a class="dropdown-item" href="#" onclick="deletar('<?= $this->controllerName?>', <?=$row['cliente_id']?>, <?=$row['cliente_ativo']?>)">
+				    <?php echo $row['cliente_ativo'] == 1 ? "Desativar" : "Ativar"?>
+				</a>
+			  </div>
+			</div>
+		</td>
+    </tr>
+	<?php endforeach;?>
+  </tbody>
+</table>

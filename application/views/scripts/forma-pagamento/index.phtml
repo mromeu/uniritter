@@ -1,0 +1,97 @@
+<h2>Formas de Pagamento</h2>
+<hr>
+
+<div class="btn-toolbar mb-3" role="toolbar">
+	<div class="btn-group mr-2" role="group">
+		<div class="input-group-prepend">
+			<div class="input-group-text"><span data-feather="search"></span></div>
+		</div>
+
+		<button type="button" class="btn btn-secondary" data-toggle="collapse" data-target="#pesquisa" aria-expanded="false" aria-controls="pesquisa">Pesquisar</button>
+	</div>
+
+	<button type="button" class="btn btn-success" data-toggle="modal" data-target="#novo"> Adicionar</button>
+</div>
+
+<?php if($this->limpraFiltro): ?><a href="/<?= $this->controllerName?>" class="btn btn-outline-dark">Limpar filtros</a><?php endif;?>
+
+<div class="modal fade" id="novo" tabindex="-1" role="dialog" aria-labelledby="novoCadastro" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="novoCadastro">Novo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	<form name="formNovo" id="formNovo" method="post" action="/<?= $this->controllerName?>/salvar">
+			<input hidden="hidden" id="forma_pagamento_id" name="forma_pagamento_id">
+			<div class="form-group">
+				<?= $this->formNovo->forma_pagamento_nome ?>
+			</div>
+			<div class="form-group">
+				<?= $this->formNovo->forma_pagamento_ativo ?>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+			<button type="submit" class="btn btn-primary">Salvar</button>
+		</form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="collapse" id="pesquisa">
+	<div class="card card-body">
+		<form name="formPesquisa" id="formPesquisa" method="post" action="">
+			<div class="form-row">
+				<div class="form-group col-md-4">
+	            	<?= $this->form->forma_pagamento_nome ?>
+	        	</div>
+				<div class="form-group col-md-4">
+	            	<?= $this->form->forma_pagamento_ativo ?>
+	        	</div>
+			</div>
+			<button type="submit" class="btn btn-sm btn-warning">Pesquisar</button>
+			<button type="button" class="btn btn-sm btn-danger" data-toggle="collapse" data-target="#pesquisa" aria-expanded="false" aria-controls="pesquisa">Cancelar</button>
+		</form>
+	</div>
+</div>
+
+<table class="table table-hover mt-3">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">NOME</th>
+      <th scope="col" class="text-right">
+      	<a href="/<?= $this->controllerName?>"><span data-feather="refresh-cw"></span> atualizar dados </th>
+    </tr>
+  </thead>
+  <tbody>
+  	<?php
+	  	$count = 1;
+  		foreach($this->rows as $row) :
+  		$row = $this->FormataInputsView($this->cols, $row->toArray());?>
+
+    <tr id="<?=$row['forma_pagamento_id']?>">
+      <th scope="row"><?=$count++?></th>
+      <td><?=$row['forma_pagamento_nome']?></td>
+      <td class="text-right">
+      	<div class="btn-group">
+			  <button type="button" class="btn btn-sm btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			    ALTERAR
+			  </button>
+			  <div class="dropdown-menu">
+			    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#novo" onclick="popCampos('<?= $this->controllerName?>', <?=$row['forma_pagamento_id']?>)">Editar</a>
+			    <a class="dropdown-item" href="#" onclick="deletar('<?= $this->controllerName?>', <?=$row['forma_pagamento_id']?>, <?=$row['forma_pagamento_ativo']?>)">
+				    <?php echo $row['forma_pagamento_ativo'] == 1 ? "Desativar" : "Ativar"?>
+				</a>
+			  </div>
+			</div>
+		</td>
+    </tr>
+	<?php endforeach;?>
+  </tbody>
+</table>

@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <title>Uniritter - Banco de Dados - Grau A</title>
+
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/jasny-bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/local.css">
+    <link rel="stylesheet" type="text/css" href="http://getbootstrap.com/docs/4.0/examples/dashboard/dashboard.css">
+    <script type="text/javascript" src="/js/jquery.3.2.1.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Banco de Dados - GRAU A</a>
+      <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+          <a class="nav-link" href="#">Sair</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+
+              <li class="nav-item">
+                <a class="nav-link" href="/cargo">
+                  <span data-feather="tag"></span>
+                  Cargos
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/cliente">
+                  <span data-feather="users"></span>
+                  Clientes
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/compra">
+                  <span data-feather="shopping-cart"></span>
+                  Compras
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/estoque">
+                  <span data-feather="truck"></span>
+                  Estoque
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/forma-pagamento">
+                  <span data-feather="credit-card"></span>
+                  Formas de Pagamento
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/loja">
+                  <span data-feather="map-pin"></span>
+                  Lojas
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/marca">
+                  <span data-feather="map-pin"></span>
+                  Marca
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/produto">
+                  <span data-feather="shopping-bag"></span>
+                  Produtos
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/usuario">
+                  <span data-feather="user"></span>
+                  Usuários
+                </a>
+              </li>
+
+            </ul>
+          </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-4 px-5">
+
+          <?php
+          //recebe as mensagens de alerta do controller
+          echo !empty($this->flashMessage) ? $this->Flash($this->flashMessage) : "" ?>
+
+          <?php
+          //recebe o conteúdo renderizado do controller
+          echo $this->layout()->content?>
+
+        </main>
+      </div>
+    </div>
+
+
+  <!-- Mascáras, botões com ícones e alertas fixos -->
+	<script type="text/javascript" src="/js/jasny-bootstrap.min.js"></script>
+  <!-- Padrão Bootstrap -->
+	<script type="text/javascript" src="/js/popper.min.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+  <!-- Ícones -->
+  <!--<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>-->
+  <!-- Funções locais -->
+  <script type="text/javascript" src="/js/scripts.js"></script>
+  <!-- include summernote css/js -->
+  <link href="/css/summernote.css" rel="stylesheet">
+  <script type="text/javascript" src="/js/summernote.min.js"></script>
+  <script>
+    feather.replace()
+  </script>
+  <script>
+    $(document).ready(function() {
+        $('.textarea-editor').summernote({
+          height: 150,                 // set editor height
+          minHeight: null,             // set minimum height of editor
+          maxHeight: null,             // set maximum height of editor
+          focus: false,                // set focus to editable area after initializin
+          lang: 'pt-BR'
+        });
+    });
+  </script>
+</body>
+</html>

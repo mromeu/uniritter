@@ -1,0 +1,47 @@
+<h2>Editar Cliente</h2>
+<hr>
+
+	<div class="card card-body mb-3">
+		<form name="form" id="form" method="post" action="/<?= $this->controllerName?>/salvar">
+			<div class="form-row">
+				<div class="form-group col-md-4">
+					<?= $this->form->loja_nome ?>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-4">
+					<?= $this->form->loja_endereco ?>
+				</div>
+				<div class="form-group col-md-4">
+					<?= $this->form->loja_numero ?>
+				</div>
+				<div class="form-group col-md-4">
+					<?= $this->form->loja_complemento ?>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-4">
+					<?= $this->form->loja_bairro ?>
+				</div>
+				<div class="form-group col-md-4">
+					<?= $this->form->loja_cep ?>
+				</div>
+				<div class="form-group col-md-4">
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-4">
+					<?= $this->form->estado_id ?>
+				</div>
+				<div class="form-group col-md-4">
+					<?= $this->form->cidade_id ?>
+				</div>
+				<div class="form-group col-md-4">
+					<?= $this->form->loja_ativo ?>
+				</div>
+			</div>
+			<?= $this->form->loja_id ?>
+			<button type="submit" class="btn btn-sm btn-primary">Salvar</button>
+			<a href="/<?= $this->controllerName?>" class="btn btn-sm btn-danger">Cancelar</a>
+		</form>
+	</div>

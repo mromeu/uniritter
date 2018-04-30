@@ -1,0 +1,16 @@
+.error {
+	
+	display: block;
+	list-style-type: none;
+	margin-left: -25px;
+}
+
+input:required, select:required {
+
+  border-left: 4px solid green;
+}
+
+input:invalid, select:invalid {
+
+  border-left: 4px solid red;
+}
